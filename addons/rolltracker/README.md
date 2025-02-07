@@ -1,1 +1,1 @@
-
+This is basically Sippius' [Roll Tracker](https://github.com/Sippius/Ashita-v4-addons/tree/main) but rewritten and with some reduced functionality (no adjustable settings + no roll effects e.g. `+12 Store TP`)
