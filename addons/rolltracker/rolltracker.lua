@@ -16,14 +16,7 @@ local function roll_print(roll_id, result, targets)
         message = "[" .. #targets .. "] ";
 
         for key, name in ipairs(targets) do
-            message = ({
-                [1] = message .. chat.color1(88, name),
-                [2] = message .. chat.color1(105, name),
-                [3] = message .. chat.color1(6, name),
-                [4] = message .. chat.color1(89, name),
-                [5] = message .. chat.color1(67, name),
-            })[key];
-
+            message = message .. chat.color1(({ 88, 105, 6, 89, 67 })[key], name);
             message = message .. (key < #targets and ", " or " ");
         end
 
@@ -40,7 +33,6 @@ local function roll_print(roll_id, result, targets)
     })[result] or chat.message(info);
 
     message = message .. roll.Name .. " [" .. roll.Lucky .. "/" .. roll.Unlucky .. "] " .. string.char(0x87, result - 1 + 64) .. info;
-
     print(chat.header(addon.name):append(message));
 end
 
@@ -66,9 +58,9 @@ ashita.events.register("packet_in", "packet_in_cb", function (e)
         end
 
         local rolled_number = ashita.bits.unpack_be(e.data_raw, 213, 17);
-        local target_count = ashita.bits.unpack_be(e.data_raw, 72, 6) - 1;
+        local target_count = ashita.bits.unpack_be(e.data_raw, 72, 6);
 
-        if (not (target_count > 0)) then
+        if (not (target_count > 1)) then
             roll_print(ability_id, rolled_number);
             return;
         end
@@ -76,7 +68,7 @@ ashita.events.register("packet_in", "packet_in_cb", function (e)
         local party_members = { };
         local offset = 273;
 
-        for _ = 0, target_count do
+        for _ = 1, target_count do
             local target_id = ashita.bits.unpack_be(e.data_raw, offset, 32);
             offset = offset + 123;
 
