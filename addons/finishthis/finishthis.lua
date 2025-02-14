@@ -27,6 +27,7 @@ ashita.events.register("command", "command_cb", function (e)
 
         chat:QueueCommand(CommandMode.AshitaParse, "/sendkey space down");
         coroutine.sleep(0.1);
+        chat:QueueCommand(CommandMode.AshitaParse, "/sendkey space up");
 
         if (chat:IsInputOpen() == ChatInputOpenStatus.OpenedChat) then
             chat:SetInputText(args[2]);
