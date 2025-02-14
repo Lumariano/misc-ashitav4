@@ -6,6 +6,8 @@ addon.link    = "https://github.com/Lumariano/misc-ashitav4";
 
 require("common");
 
+local chat = AshitaCore:GetChatManager();
+
 ashita.events.register("command", "command_cb", function (e)
     local args = e.command:args();
 
@@ -14,8 +16,7 @@ ashita.events.register("command", "command_cb", function (e)
     end
 
     e.blocked = true;
-
-    local chat = AshitaCore:GetChatManager();
+        
     local input_status = chat:IsInputOpen();
 
     if (input_status == ChatInputOpenStatus.OpenedChat) then
