@@ -22,7 +22,7 @@ ashita.events.register("command", "command_cb", function (e)
     if (input_status == ChatInputOpenStatus.OpenedChat) then
         chat:SetInputText(args[2]);
     elseif (input_status == ChatInputOpenStatus.Closed) then
-        if (AshitaCore:GetPluginManager():IsLoaded("thirdparty") == false) then
+        if (not AshitaCore:GetPluginManager():IsLoaded("thirdparty")) then
             return;
         end
 
