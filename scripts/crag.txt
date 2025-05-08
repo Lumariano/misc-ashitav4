@@ -1,0 +1,6 @@
+/lac disable ring1
+/equip ring1 "Dim. Ring (Holla)"
+/wait 12
+/item "Dim. Ring (Holla)" <me>
+/wait 12
+/lac enable ring1

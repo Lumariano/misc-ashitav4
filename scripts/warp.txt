@@ -1,0 +1,6 @@
+/lac disable ring1
+/equip ring1 "Warp Ring"
+/wait 12
+/item "Warp Ring" <me>
+/wait 12
+/lac enable ring1
