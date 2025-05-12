@@ -1,0 +1,16 @@
+---@meta _
+
+---@class action
+---@field ActionType string
+---@field CastTime number
+---@field Element string
+---@field Id integer
+---@field MpCost integer
+---@field MpAftercast integer
+---@field MppAftercast integer
+---@field Name string
+---@field Recast number
+---@field Resend boolean
+---@field Resource userdata
+---@field Skill string
+---@field Type string

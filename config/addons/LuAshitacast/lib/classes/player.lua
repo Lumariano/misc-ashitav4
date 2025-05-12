@@ -1,0 +1,18 @@
+---@meta _
+
+---@class player
+---@field HP integer
+---@field MaxHP integer
+---@field IsMoving boolean
+---@field MainJob string
+---@field MainJobLevel integer
+---@field MainJobSync integer
+---@field MP integer
+---@field MaxMP integer
+---@field MPP integer
+---@field Name string
+---@field Status string
+---@field SubJob string
+---@field SubJobLevel integer
+---@field SubJobSync integer
+---@field TP integer

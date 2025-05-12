@@ -1,0 +1,30 @@
+---@meta _
+
+---@class iability
+---@field Id number
+---@field Type number
+---@field Element number
+---@field ListIconId number
+---@field ManaCost number
+---@field RecastTimerId number
+---@field Targets number
+---@field TPCost number
+---@field MenuCategoryId number
+---@field MonsterLevel number
+---@field Range number
+---@field AreaRange number
+---@field AreaShapeType number
+---@field CursorTargetType number
+---@field Unknown0000 number
+---@field Unknown0001 number
+---@field Unknown0002 number
+---@field Unknown0003 number
+---@field Unknown0004 number
+---@field Unknown0005 number
+---@field Unknown0006 number
+---@field Unknown0007 number
+---@field Unknown0008 number
+---@field Unknown0009 userdata
+---@field EOE number
+---@field Name userdata
+---@field Description userdata

@@ -1,0 +1,13 @@
+---@meta _
+
+---@class equipscreen
+---@field Attack integer
+---@field DarkResistance integer
+---@field Defense integer
+---@field EarthResistance integer
+---@field FireResistance integer
+---@field IceResistance integer
+---@field LightningResistance integer
+---@field LightResistance integer
+---@field WaterResistance integer
+---@field WindResistance integer

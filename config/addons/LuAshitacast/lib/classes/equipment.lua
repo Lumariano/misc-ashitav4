@@ -1,0 +1,25 @@
+---@meta _
+
+---@class equipment_piece
+---@field container integer
+---@field Item item_t
+---@field Name string
+---@field Resource iitem
+
+---@class equipment
+---@field Main equipment_piece?
+---@field Sub equipment_piece?
+---@field Range equipment_piece?
+---@field Ammo equipment_piece?
+---@field Head equipment_piece?
+---@field Body equipment_piece?
+---@field Hands equipment_piece?
+---@field Legs equipment_piece?
+---@field Feet equipment_piece?
+---@field Neck equipment_piece?
+---@field Waist equipment_piece?
+---@field Ear1 equipment_piece?
+---@field Ear2 equipment_piece?
+---@field Ring1 equipment_piece?
+---@field Ring2 equipment_piece?
+---@field Back equipment_piece?

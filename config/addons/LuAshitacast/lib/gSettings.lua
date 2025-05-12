@@ -1,0 +1,21 @@
+---@meta _
+
+---@class gSettings
+---@field AddSetEquipScreenOrder boolean
+---@field AllowSyncEquip boolean
+---@field AddSetBackups boolean
+---@field Debug boolean
+---@field EquipBags table
+---@field EnableNomadStorage boolean
+---@field ForceDisableBags table
+---@field ForceEnableBags table
+---@field PetskillDelay number
+---@field WeaponskillDelay number
+---@field AbilityDelay number
+---@field SpellOffset number
+---@field RangedBase number
+---@field RangedOffset number
+---@field ItemOffset number
+---@field FastCast integer
+---@field Snapshot integer
+gSettings = { };
