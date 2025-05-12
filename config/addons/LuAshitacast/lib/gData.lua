@@ -20,7 +20,7 @@ function gData.GetActionTarget() end
 function gData.GetBuffCount(matchBuff) end
 
 ---@param index integer
----@return entity
+---@return entity?
 function gData.GetEntity(index) end
 
 ---@return environment
