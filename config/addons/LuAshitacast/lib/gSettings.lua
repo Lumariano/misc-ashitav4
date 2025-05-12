@@ -1,6 +1,7 @@
 ---@meta _
 
 ---@class gSettings
+---@field AllowAddSet boolean
 ---@field AddSetEquipScreenOrder boolean
 ---@field AllowSyncEquip boolean
 ---@field AddSetBackups boolean
