@@ -1,0 +1,6 @@
+{
+    "Lua.runtime.version": "LuaJIT",
+    "Lua.runtime.special": {
+        "gFunc.LoadFile": "require"
+    }
+}
