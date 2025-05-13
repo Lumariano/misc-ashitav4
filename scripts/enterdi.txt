@@ -1,6 +1,7 @@
-/hidetrust on
 # Main Menu > Config > Misc. > Character Models Displayed
 /config set 60 25
 # Main Menu > Config > Effects
 # Hide everything except effects that are from or are affecting you and your party
 /config set 146 0x35110
+# /hidetrust on
+/config set 170 1
