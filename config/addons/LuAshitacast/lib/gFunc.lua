@@ -6,7 +6,7 @@ gFunc = { };
 ---@param setName string
 function gFunc.AddSet(setName) end
 
----@param baseTable string
+---@param baseTable table
 function gFunc.ApplyBaseSets(baseTable) end
 
 function gFunc.CancelAction() end
