@@ -1,6 +1,20 @@
 {
-    "Lua.runtime.version": "LuaJIT",
+    "Lua.diagnostics.disable": [
+        "undefined-field"
+    ],
+    "Lua.diagnostics.globals": [
+        "AshitaCore",
+        "CommandMode",
+        "GetEntity",
+        "GetPlayerEntity",
+        "ashita",
+        "addon",
+        "chat",
+        "struct",
+        "T"
+    ],
     "Lua.runtime.special": {
         "gFunc.LoadFile": "require"
-    }
+    },
+    "Lua.runtime.version": "LuaJIT"
 }
