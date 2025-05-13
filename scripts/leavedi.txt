@@ -1,6 +1,7 @@
-/hidetrust off
 # Main Menu > Config > Misc. > Character Models Displayed
 /config set 60 50
 # Main Menu > Config > Effects
 # Show everything except screen shaking
 /config set 146 0x20000
+# /hidetrust off
+/config set 170 0
