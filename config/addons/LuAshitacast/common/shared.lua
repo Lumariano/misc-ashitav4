@@ -16,6 +16,12 @@ local actionRanges = {
     [13] = 24.9,
 };
 
+local function GetTrueActionTargetDistance()
+    local actionTarget = gData.GetActionTarget();
+    return actionTarget.Distance - AshitaCore:GetMemoryManager():GetEntity():GetModelHitboxSize(actionTarget.Index);
+end
+M.GetTrueActionTargetDistance = GetTrueActionTargetDistance;
+
 local function GetIsIncapacitated()
     return gData.GetBuffCount(7) > 0 -- Petrification
         or gData.GetBuffCount(10) > 0 -- Stun
@@ -25,60 +31,70 @@ local function GetIsIncapacitated()
 end
 M.GetIsIncapacitated = GetIsIncapacitated;
 
-local function GetTrueActionTargetDistance()
-    local actionTarget = gData.GetActionTarget();
-    return actionTarget.Distance - AshitaCore:GetMemoryManager():GetEntity():GetModelHitboxSize(actionTarget.Index);
-end
-M.GetTrueActionTargetDistance = GetTrueActionTargetDistance;
-
 local function GetCantUseAbilities()
-    return GetIsIncapacitated()
-        or gData.GetBuffCount(16) > 0 -- Amnesia
+    return gData.GetBuffCount(16) > 0 -- Amnesia
         or gData.GetBuffCount(261) > 0; -- Impairment
 end
 
 local function GetCantCastSpells()
-    return GetIsIncapacitated()
-        or gData.GetBuffCount(6) > 0 -- Silence
+    return gData.GetBuffCount(6) > 0 -- Silence
         or gData.GetBuffCount(29) > 0; -- Mute
 end
 
-M.SpellBailout = function ()
-    if (GetCantCastSpells()) then
+M.Bailout = function ()
+    local handler = gData.GetCurrentCall();
+    local player = gData.GetPlayer();
+    local action = gData.GetAction();
+    local reason = "";
+
+    repeat
+        if (GetIsIncapacitated()) then
+            reason = "Incapacitated!";
+            break;
+        end
+
+        if (handler == "HandlePrecast" and GetCantCastSpells()) then
+            reason = "Silenced";
+            break;
+        end
+
+        if ((handler  == "HandleAbility" or handler == "HandleWeaponskill") and GetCantUseAbilities()) then
+            reason = "Amnesia!";
+            break;
+        end
+
+        if ((handler == "HandlePrecast" or handler == "HandlePreshot") and player.IsMoving) then
+            reason = "You are moving!";
+            break;
+        end
+
+        if (handler == "HandleWeaponskill" and player.TP < 1000) then
+            reason = "Not enough TP!";
+            break;
+        end
+
+        if (handler == "HandlePreshot") then
+            if (M.GetTrueActionTargetDistance() > 24.9) then
+                reason = "Out of range!";
+                break;
+            end
+        elseif (action.Resource.Range ~= 15 and M.GetTrueActionTargetDistance() > actionRanges[action.Resource.Range]) then
+            reason = "Out of range!";
+            break;
+        end
+    until true;
+
+    if (reason ~= "") then
         gFunc.CancelAction();
-        print(chat.header("HandlePrecast"):append(chat.critical("Can't cast spells!")));
-        return;
+
+        if (not action.Resend) then
+            print(chat.header(handler):append(chat.critical(reason)));
+        end
+
+        return true;
     end
 
-    local rangeIndex = gData.GetAction().Resource.Range;
-
-    if (rangeIndex ~= 15 and GetTrueActionTargetDistance() > actionRanges[rangeIndex]) then
-        gFunc.CancelAction();
-        print(chat.header("HandlePrecast"):append(chat.critical("Out of range!")));
-        return;
-    end
-end
-
-M.WeaponskillBailout = function ()
-    if (GetCantUseAbilities()) then
-        gFunc.CancelAction();
-        print(chat.header("HandleWeaponskill"):append(chat.critical("Can't use weaponskills!")));
-        return;
-    end
-
-    if (gData.GetPlayer().TP < 1000) then
-        gFunc.CancelAction();
-        print(chat.header("HandleWeaponskill"):append(chat.critical("Not enough TP!")));
-        return;
-    end
-
-    local rangeIndex = gData.GetAction().Resource.Range;
-
-    if (rangeIndex ~= 15 and GetTrueActionTargetDistance() > actionRanges[rangeIndex]) then
-        gFunc.CancelAction();
-        print(chat.header("HandleWeaponskill"):append(chat.critical("Out of range!")));
-        return;
-    end
+    return false;
 end
 
 return M;
