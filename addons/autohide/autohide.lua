@@ -6,7 +6,7 @@
 addon.name = "autohide";
 addon.author = "Lumaro";
 addon.version = "1.0";
-addon.desc = "Automatically hides all elements drawn by Ashita during certains states.";
+addon.desc = "Automatically hides all elements drawn by Ashita during certain states.";
 addon.link = "https://github.com/Lumariano/misc-ashitav4/tree/main/addons/autohide";
 
 local autohide = {
