@@ -70,7 +70,8 @@ local function should_hide()
         return true;
     end
 
-    if (string.match(get_menu_name(), "map")) then
+    local menu_name = get_menu_name();
+    if (string.match(menu_name, "map") or string.match(menu_name, "cnqframe") then
         return true;
     end
 
