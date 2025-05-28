@@ -87,7 +87,7 @@ local function should_hide()
 end
 
 ashita.events.register("load", "load_cb", function ()
-	autohide.logged_in = GetPlayerEntity() and true or false;
+    autohide.logged_in = GetPlayerEntity() and true or false;
 
     local pointer = ashita.memory.find("FFXiMain.dll", 0, "A0????????84C0741AA1????????85C0741166A1????????663B05????????0F94C0C3", 0, 0);
     assert(pointer ~= 0, "Failed to find event system pointer.");
