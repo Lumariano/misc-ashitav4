@@ -1,6 +1,6 @@
 ---@meta _
 
----@class iability
+---@class IAbility
 ---@field Id number
 ---@field Type number
 ---@field Element number
