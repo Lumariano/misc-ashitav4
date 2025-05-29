@@ -1,6 +1,6 @@
 ---@meta _
 
----@class pet
+---@class Pet
 ---@field Distance number
 ---@field HPP integer
 ---@field Id integer
