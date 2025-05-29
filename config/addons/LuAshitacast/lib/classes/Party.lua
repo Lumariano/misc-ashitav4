@@ -1,6 +1,6 @@
 ---@meta _
 
----@class party
+---@class Party
 ---@field ActionTarget boolean
 ---@field Count integer
 ---@field InParty boolean
