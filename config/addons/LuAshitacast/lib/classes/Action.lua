@@ -2,14 +2,14 @@
 
 ---@class Action
 ---@field ActionType string
----@field CastTime number
+---@field CastTime integer
 ---@field Element string
 ---@field Id integer
 ---@field MpCost integer
 ---@field MpAftercast integer
 ---@field MppAftercast integer
 ---@field Name string
----@field Recast number
+---@field Recast integer
 ---@field Resend boolean
 ---@field Resource userdata
 ---@field Skill string
