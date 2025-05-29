@@ -1,0 +1,6 @@
+/lac disable back
+/equip back "Nexus Cape"
+/wait 34
+/item "Nexus Cape" <me>
+/wait 12
+/lac enable back

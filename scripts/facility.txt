@@ -1,0 +1,6 @@
+/lac disable ring1
+/equip ring1 "Facility Ring"
+/wait 9
+/item "Facility Ring" <me>
+/wait 12
+/lac enable ring1
