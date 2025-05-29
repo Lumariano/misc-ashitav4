@@ -6,13 +6,13 @@ gData = { };
 ---@return string
 function gData.GetCurrentCall() end
 
----@return alliance
+---@return Alliance
 function gData.GetAlliance() end
 
----@return action
+---@return Action
 function gData.GetAction() end
 
----@return entity
+---@return Entity
 function gData.GetActionTarget() end
 
 ---@param matchBuff integer | string
@@ -20,26 +20,29 @@ function gData.GetActionTarget() end
 function gData.GetBuffCount(matchBuff) end
 
 ---@param index integer
----@return entity?
+---@return Entity?
 function gData.GetEntity(index) end
 
----@return environment
+---@return Environment
 function gData.GetEnvironment() end
 
----@return equipment
+---@return Equipment
 function gData.GetEquipment() end
 
----@return equipscreen
+---@return Equipscreen
 function gData.GetEquipScreen() end
 
----@return pet?
+---@return Pet?
 function gData.GetPet() end
 
----@return player
+---@return PetAction?
+function gData.GetPetAction() end
+
+---@return Player
 function gData.GetPlayer() end
 
----@return party
+---@return Party
 function gData.GetParty() end
 
----@return entity?
+---@return Entity?
 function gData.GetTarget() end
