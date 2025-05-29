@@ -2,12 +2,12 @@
 
 ---@class PetAction
 ---@field ActionType string
----@field CastTime number
+---@field CastTime integer
 ---@field Element string
 ---@field Id integer
 ---@field MpCost integer
 ---@field Name string
----@field Recast number
+---@field Recast integer
 ---@field Resource userdata
 ---@field Skill string
 ---@field Type string
