@@ -1,6 +1,6 @@
 ---@meta _
 
----@class player
+---@class Player
 ---@field HP integer
 ---@field MaxHP integer
 ---@field IsMoving boolean
