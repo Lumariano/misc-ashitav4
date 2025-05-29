@@ -1,6 +1,6 @@
 ---@meta
 
----@class iitem
+---@class IItem
 ---@field Id number
 ---@field Flags number
 ---@field StackSize number
