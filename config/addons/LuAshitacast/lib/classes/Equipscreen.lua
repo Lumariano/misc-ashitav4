@@ -1,6 +1,6 @@
 ---@meta _
 
----@class equipscreen
+---@class Equipscreen
 ---@field Attack integer
 ---@field DarkResistance integer
 ---@field Defense integer
