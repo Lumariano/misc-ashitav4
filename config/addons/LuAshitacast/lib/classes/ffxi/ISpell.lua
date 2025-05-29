@@ -1,6 +1,6 @@
 ---@meta _
 
----@class ispell
+---@class ISpell
 ---@field Index number
 ---@field Type number
 ---@field element number
