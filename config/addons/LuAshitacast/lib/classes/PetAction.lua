@@ -1,0 +1,13 @@
+---@meta _
+
+---@class PetAction
+---@field ActionType string
+---@field CastTime number
+---@field Element string
+---@field Id integer
+---@field MpCost integer
+---@field Name string
+---@field Recast number
+---@field Resource userdata
+---@field Skill string
+---@field Type string
