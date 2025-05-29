@@ -1,11 +1,11 @@
 ---@meta _
 
----@class timestamp
+---@class Timestamp
 ---@field day number
 ---@field hour number
 ---@field minute number
 
----@class environment
+---@class Environment
 ---@field Area string
 ---@field Day string
 ---@field DayElement string
