@@ -1,6 +1,6 @@
 ---@meta _
 
----@class action
+---@class Action
 ---@field ActionType string
 ---@field CastTime number
 ---@field Element string
