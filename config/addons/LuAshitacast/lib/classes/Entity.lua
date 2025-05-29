@@ -1,6 +1,6 @@
 ---@meta _
 
----@class entity
+---@class Entity
 ---@field Distance number
 ---@field HPP integer
 ---@field Id integer
