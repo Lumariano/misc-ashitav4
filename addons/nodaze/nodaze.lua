@@ -28,9 +28,10 @@ ashita.events.register("packet_in", "packet_in_cb", function (e)
                 end
 
                 local has_react = ashita.bits.unpack_be(e.data_raw, offset, 1) > 0;
+                offset = offset + 1;
 
                 if (has_react) then
-                    offset = offset + 35;
+                    offset = offset + 34;
                 end
             end
         end
