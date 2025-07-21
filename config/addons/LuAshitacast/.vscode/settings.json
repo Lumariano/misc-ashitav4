@@ -11,7 +11,8 @@
         "addon",
         "chat",
         "struct",
-        "T"
+        "T",
+        "settings"
     ],
     "Lua.runtime.special": {
         "gFunc.LoadFile": "require"
