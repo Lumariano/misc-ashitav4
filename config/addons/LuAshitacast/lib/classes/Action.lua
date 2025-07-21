@@ -11,6 +11,6 @@
 ---@field Name string
 ---@field Recast integer
 ---@field Resend boolean
----@field Resource userdata
+---@field Resource IAbility | IItem | ISpell
 ---@field Skill string
 ---@field Type string
