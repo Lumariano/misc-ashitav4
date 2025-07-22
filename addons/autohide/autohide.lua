@@ -60,6 +60,7 @@ local default_menus = T{
 
 local autohide = {
     hidden_flags = 0,
+    logged_in = false,
     pointers = {
         chat = 0,
         event = 0,
@@ -118,7 +119,7 @@ local function get_menu_name()
 end
 
 local function get_visibility()
-    if (not settings.logged_in) then
+    if (not autohide.logged_in) then
         return autohide.settings.zoning;
     end
 
@@ -177,6 +178,8 @@ ashita.events.register("load", "load_cb", function ()
         settings.save();
     end
 
+    autohide.logged_in = GetPlayerEntity() and true or false;
+
     local pointer = ashita.memory.find("FFXiMain.dll", 0, "83EC??B9????????E8????????0FBF4C24??84C0", 0x04, 0)
     assert(pointer ~= 0, "Failed to find chat pointer.");
     autohide.pointers.chat = pointer;
@@ -218,6 +221,18 @@ ashita.events.register("command", "command_cb", function (e)
     if (#args == 2 and args[2] == "getmenu") then
         coroutine.sleep(0.1);
         print(chat.header(addon.name):append(chat.message("Currently active menu name is \"%s\"."):fmt(get_menu_name())));
+        return;
+    end
+end);
+
+ashita.events.register("packet_in", "packet_in_cb", function (e)
+    if (e.id == 0x000A) then
+        autohide.logged_in = true;
+        return;
+    end
+
+    if (e.id == 0x000B) then
+        autohide.logged_in = false;
         return;
     end
 end);
