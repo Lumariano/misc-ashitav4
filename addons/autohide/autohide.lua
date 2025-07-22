@@ -11,6 +11,7 @@ addon.link = "https://github.com/Lumariano/misc-ashitav4/tree/main/addons/autohi
 
 require("common");
 local chat = require("chat");
+local imgui = require("imgui");
 local settings = require("settings");
 
 local default_settings = T{
@@ -222,24 +223,24 @@ ashita.events.register("command", "command_cb", function (e)
 end);
 
 ashita.events.register("d3d_beginscene", "d3d_beginscene_cb", function ()
-    if (autohide.gui.visible[1]) then
-        AshitaCore:GetGuiManager():SetVisible(true);
-        autohide.hidden_flags = -1;
-        return;
-    end
-
     local visibility = get_visibility();
 
     if (visibility) then
         local flags = bit.bor(
             bit.lshift(visibility.hide_font[1] and 1 or 0, 0),
-            bit.lshift(visibility.hide_gui[1] and 1 or 0, 1),
+            bit.lshift(visibility.hide_gui[1] and not autohide.gui.visible[1] and 1 or 0, 1),
             bit.lshift(visibility.hide_prim[1] and 1 or 0, 2)
         );
 
         if (flags ~= autohide.hidden_flags) then
             AshitaCore:GetFontManager():SetVisible(not visibility.hide_font[1]);
-            AshitaCore:GetGuiManager():SetVisible(not visibility.hide_gui[1]);
+
+            if (autohide.gui.visible[1]) then
+                AshitaCore:GetGuiManager():SetVisible(true);
+            else
+                AshitaCore:GetGuiManager():SetVisible(not visibility.hide_gui[1]);
+            end
+
             AshitaCore:GetPrimitiveManager():SetVisible(not visibility.hide_prim[1]);
             autohide.hidden_flags = flags;
         end
@@ -292,7 +293,7 @@ ashita.events.register("d3d_present", "d3d_present_cb", function ()
 
                 imgui.BeginGroup();
 
-                if (imgui.BeginChild("menu_list", { imgui.GetWindowWidth() / 2, 150 }, true, ImGuiWindowFlags_HorizontalScrollbar)) then
+                if (imgui.BeginChild("menu_list", { imgui.GetWindowWidth() / 2, 200 }, true, ImGuiWindowFlags_HorizontalScrollbar)) then
                     for k, v in ipairs(autohide.settings.menus) do
                         imgui.PushID(k);
 
@@ -302,15 +303,17 @@ ashita.events.register("d3d_present", "d3d_present_cb", function ()
 
                         imgui.PopID(k);
                     end
+
+                    imgui.EndChild();
                 end
 
                 imgui.EndGroup();
-                imgui.SameLine();
 
                 if (autohide.gui.selected_menu[1] > 0) then
+                    imgui.SameLine();
                     imgui.BeginGroup();
                     local menu = autohide.settings.menus[autohide.gui.selected_menu[1]];
-                    imgui.TextColored({ 1.0, 0.65, 0.25, 1.0 }, "While menu \"" .. menu.name .. "\" is selected:");
+                    imgui.TextColored({ 1.0, 0.65, 0.25, 1.0 }, "While menu \"" .. menu.name .. "\" is active:");
                     draw_manager_checkboxes(menu, "menu");
 
                     if (imgui.Button("Remove selected")) then
