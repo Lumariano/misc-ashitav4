@@ -5,7 +5,7 @@
 
 addon.name = "autohide";
 addon.author = "Lumaro";
-addon.version = "1.1";
+addon.version = "1.11";
 addon.desc = "Hides elements drawn by Ashita during certain client states.";
 addon.link = "https://github.com/Lumariano/misc-ashitav4/tree/main/addons/autohide";
 
@@ -167,17 +167,16 @@ end
 settings.register("settings", "settings_update", function (s)
     if (s) then
         autohide.settings = s;
+
+        if (not autohide.settings.menus) then
+            autohide.settings.menus = default_menus:copy();
+        end
     end
 
     settings.save();
 end);
 
 ashita.events.register("load", "load_cb", function ()
-    if (not autohide.settings.menus) then
-        autohide.settings.menus = default_menus:copy();
-        settings.save();
-    end
-
     autohide.logged_in = GetPlayerEntity() and true or false;
 
     local pointer = ashita.memory.find("FFXiMain.dll", 0, "83EC??B9????????E8????????0FBF4C24??84C0", 0x04, 0)
