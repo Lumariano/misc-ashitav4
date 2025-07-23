@@ -5,7 +5,7 @@
 
 addon.name = "autohide";
 addon.author = "Lumaro";
-addon.version = "1.11";
+addon.version = "1.12";
 addon.desc = "Hides elements drawn by Ashita during certain client states.";
 addon.link = "https://github.com/Lumariano/misc-ashitav4/tree/main/addons/autohide";
 
@@ -74,6 +74,13 @@ local autohide = {
     },
     settings = settings.load(default_settings);
 };
+
+do
+    if (not autohide.settings.menus) then
+        autohide.settings.menus = default_menus:copy();
+        settings.save();
+    end
+end
 
 local function get_chat_expanded()
     local pointer = ashita.memory.read_uint32(autohide.pointers.chat);
